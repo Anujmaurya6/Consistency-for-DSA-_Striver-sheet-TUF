@@ -1,8 +1,7 @@
 package ArrayEAsy;
 
 public class LeftRotate {
-    public static void main(String[] args) {
-        
+          
     
     int[]arr={10,20,30,40,50,60};
     int n=arr.length;
@@ -17,5 +16,7 @@ public class LeftRotate {
         for (int num : arr) {
             System.out.print(num + " ");
     }
+    public static void main(String[] args) {
+  
 }
 }
