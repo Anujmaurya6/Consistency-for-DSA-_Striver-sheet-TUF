@@ -1,34 +1,28 @@
 import java.util.*;
 
 public class Isomorphic {
+
     public static boolean isIsomorphic(String s, String t) {
-        if (s.length() != t.length()) {
-            return false;
+        if (s.length() != t.length()) return false;
+
+        char[] sArr = s.toCharArray();
+        char[] tArr = t.toCharArray();
+
+        Map<Character, Character> mapST = new HashMap<>();
+        Map<Character, Character> mapTS = new HashMap<>();
+
+        for (int i = 0; i < sArr.length; i++) {
+            char cs = sArr[i];
+            char ct = tArr[i];
+
+            if (mapST.containsKey(cs) && mapST.get(cs) != ct) return false;
+            if (mapTS.containsKey(ct) && mapTS.get(ct) != cs) return false;
+
+            mapST.put(cs, ct);
+            mapTS.put(ct, cs);
         }
 
-        Map<Character, Character> map1 = new HashMap<>(); // s -> t
-        Map<Character, Character> map2 = new HashMap<>(); // t -> s
-
-        for (int i = 0; i < s.length(); i++) {
-            char c1 = s.charAt(i);
-            char c2 = t.charAt(i);
-
-            // Forward check
-            if (map1.containsKey(c1)) {
-                if (map1.get(c1) != c2) return false;
-            } else {
-                map1.put(c1, c2);
-            }
-
-            // Reverse check
-            if (map2.containsKey(c2)) {
-                if (map2.get(c2) != c1) return false;
-            } else {
-                map2.put(c2, c1);
-            }
-        }
-
-        return true; // agar koi problem nahi hui
+        return true;
     }
 
     public static void main(String[] args) {
@@ -37,3 +31,4 @@ public class Isomorphic {
         System.out.println(isIsomorphic("paper", "title"));// true
     }
 }
+
